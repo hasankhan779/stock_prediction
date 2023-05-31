@@ -19,10 +19,12 @@ def load_data(ticker):
     data.reset_index(inplace=True)
     return data
 
+load_data("TCS")
+
 st.title('Stock Forecast App')
 
 stocks = ('GOOG', 'AAPL', 'MSFT', 'GME', 'TSLA', 'TCS')
-selected_stock = st.text_input('Type stock symbol for prediction', placeholder="Ex: TCS")
+selected_stock = st.text_input('Type stock symbol for prediction', value="TCS", placeholder="Ex: TCS")
 
 st.button(on_click=load_data(selected_stock))
 
