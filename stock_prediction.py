@@ -8,7 +8,17 @@ from prophet import Prophet
 from prophet.plot import plot_plotly
 from plotly import graph_objs as go
 
-data = []
+START = "2015-01-01"
+TODAY = date.today().strftime("%Y-%m-%d")
+
+st.title('Stock Forecast App')
+
+# stocks = ('GOOG', 'AAPL', 'MSFT', 'GME', 'TSLA', 'TCS')
+selected_stock = st.text_input('Type stock symbol for prediction', value="TCS", placeholder="Ex: TCS")
+
+n_years = st.slider('Years of prediction:', 1, 4)
+period = n_years * 365
+
 
 @st.cache_data
 def load_data(ticker):
@@ -16,22 +26,9 @@ def load_data(ticker):
     data.reset_index(inplace=True)
     return data
 
-load_data("TCS")
-
-START = "2015-01-01"
-TODAY = date.today().strftime("%Y-%m-%d")
-
-st.title('Stock Forecast App')
-
-stocks = ('GOOG', 'AAPL', 'MSFT', 'GME', 'TSLA', 'TCS')
-selected_stock = st.text_input('Type stock symbol for prediction', value="TCS", placeholder="Ex: TCS")
-
-st.button("Search", on_click=load_data(selected_stock))
-
-n_years = st.slider('Years of prediction:', 1, 4)
-period = n_years * 365
 	
 data_load_state = st.text('Loading data...')
+data = load_data(selected_stock)
 data_load_state.text('Loading data... done!')
 
 st.subheader('Raw data')
