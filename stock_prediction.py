@@ -14,7 +14,7 @@ TODAY = date.today().strftime("%Y-%m-%d")
 st.title('Stock Forecast App')
 
 # stocks = ('GOOG', 'AAPL', 'MSFT', 'GME', 'TSLA', 'TCS')
-selected_stock = st.text_input('Type stock symbol for prediction', value="TCS", placeholder="Ex: TCS")
+selected_stock = st.text_input('Type stock symbol for prediction', value="TCS.NS", placeholder="Ex: TCS.NS, INFY.BO, etc.")
 
 n_years = st.slider('Years of prediction:', 1, 4)
 period = n_years * 365
